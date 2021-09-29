@@ -3,9 +3,10 @@
 # Brute Force Attack on SSH server
 This is a demo to showcase a Brute Force attack using Docker containers.
 
+This scenario is provided in the context of SPIDER Task 7.2 PUC1.
+
 The tools used are Nmap, Hydra and OpenSSH.
 
-The scenario can be run either via docker-compose or helm.
 ## Scenario Structure
 ```
 .
