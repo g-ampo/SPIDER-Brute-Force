@@ -60,7 +60,7 @@ Build the provided Dockerfile to create the malicious container image:
 
 `sudo docker-compose up -d`
 
-## Multiple Login attempt method (part 1)
+## Multiple Login attempt (Method 1)
 The attacker container (custom Kali image instance) can use a predefined set of login details to brute force the victim (ubuntu running vulnerable OpenSSH service).
 After attaching the terminal to the malicious container, we can use the Hydra tool to perform brute force attacks using predefined datasets.
 
@@ -103,7 +103,7 @@ In our case:
 
 And proceed to use the password to gain access to the vulnerable machine.
 
-## Multiple Login attempt method (part 2)
+## Multiple Login attempt (Mewthod 2)
 This method is pretty much identical to the first one, only it does not use Hydra and relies on Nmap's scripting functionality.
 
 ### Step 1
