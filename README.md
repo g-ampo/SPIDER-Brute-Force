@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/71447362/135357401-27b285be-6f46-4b09-b898-2b139e7dba21.png)
+
 # Brute Force Attack on SSH server
 This is a demo to showcase a Brute Force attack using Docker containers.
 
@@ -7,31 +9,18 @@ The scenario can be run either via docker-compose or helm.
 ## Scenario Structure
 ```
 .
-├── brute-helm
-│   ├── Chart.yaml
-│   ├── README.md
-│   └── templates
-│       ├── brute-net-networkpolicy.yaml
-│       ├── kali-deployment.yaml
-│       ├── ubuntu-deployment.yaml
-│       └── ubuntu-service.yaml
 ├── docker-compose.yaml
 ├── Dockerfile
-├── helm-launcher.sh
 ├── launcher.sh
 ├── passwords.txt
-├── users.txt
-└── README.md
+├── README.md
+└── users.txt
 ```
-**brute-helm:** the helm chart version of the scenario
-
 **docker-compose.yaml:** the compose version of the scenario
 
 **Dockerfile:** custom image blueprint for the malicious container; it also links the set of credentials to be tested to the image
 
 **helm-launcher.sh:** automated startup script for the helm version of the scenario
-
-**launcher.sh:** automated startup script for the compose version of the scenario
 
 **passwords.txt:** list of passwords to use for the brute-force attack
 
@@ -39,17 +28,12 @@ The scenario can be run either via docker-compose or helm.
 
 **README.md:** the file you are reading now
 
-
 To automatically run the brute force scenario via **docker-compose** run `launcher.sh`:
 ```
 cd spider-puc1/Brute-Force/
 sudo ./launcher.sh
 ```
-To automatically run the brute force scenario via **helm** run `helm-launcher.sh`:
-```
-cd spider-puc1/Brute-Force/
-sudo ./helm-launcher.sh
-```
+In case the launcher.sh script returns an error, that is because hydra installation has not yet been completed in the attacking container. Please attach your terminal to the attacker and mancually launch the attack. Steps are seen below.
 
 # Setup
 The setup is comprised of two containers, a malicious and a victim one, interfacing within a bridge network.
@@ -67,7 +51,7 @@ You can change it either at the compose file, or by using `echo new-user:new-pas
 As a reminder, you can attach your terminal to a desired container by using `docker exec -it <container_ID> bash`, where `<container_ID>` can be obtained by running `docker ps`.
 Do not forget to add both the SSH username and password to the respective txt dictionaries as well (passwords.txt and users.txt).
 
-### Step 0 (skip if you used launcher.sh)
+### Step 0 (you can skip if you used launcher.sh)
 Build the provided Dockerfile to create the malicious container image:
 
 `sudo docker build -t groot .`
