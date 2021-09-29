@@ -52,6 +52,10 @@ You can change it either at the compose file, or by using `echo new-user:new-pas
 As a reminder, you can attach your terminal to a desired container by using `docker exec -it <container_ID> bash`, where `<container_ID>` can be obtained by running `docker ps`.
 Do not forget to add both the SSH username and password to the respective txt dictionaries as well (passwords.txt and users.txt).
 
+## Multiple Login attempt (Method 1)
+The attacker container (custom Kali image instance) can use a predefined set of login details to brute force the victim (ubuntu running vulnerable OpenSSH service).
+After attaching the terminal to the malicious container, we can use the Hydra tool to perform brute force attacks using predefined datasets.
+
 ### Step 0 (you can skip if you used launcher.sh)
 Build the provided Dockerfile to create the malicious container image:
 
@@ -60,10 +64,6 @@ Build the provided Dockerfile to create the malicious container image:
 ... and then run the compose yaml file:
 
 `sudo docker-compose up -d`
-
-## Multiple Login attempt (Method 1)
-The attacker container (custom Kali image instance) can use a predefined set of login details to brute force the victim (ubuntu running vulnerable OpenSSH service).
-After attaching the terminal to the malicious container, we can use the Hydra tool to perform brute force attacks using predefined datasets.
 
 ### Step 1
 Get the malicious container ID:
@@ -104,7 +104,7 @@ In our case:
 
 And proceed to use the password to gain access to the vulnerable machine.
 
-## Multiple Login attempt (Mewthod 2)
+## Multiple Login attempt (Method 2)
 This method is pretty much identical to the first one, only it does not use Hydra and relies on Nmap's scripting functionality.
 
 ### Step 1
