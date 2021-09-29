@@ -21,8 +21,6 @@ The tools used are Nmap, Hydra and OpenSSH.
 
 **Dockerfile:** custom image blueprint for the malicious container; it also links the set of credentials to be tested to the image
 
-**helm-launcher.sh:** automated startup script for the helm version of the scenario
-
 **passwords.txt:** list of passwords to use for the brute-force attack
 
 **users.txt:** list of usernames to use for the brute-force attack
