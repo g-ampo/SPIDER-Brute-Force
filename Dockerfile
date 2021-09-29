@@ -8,8 +8,9 @@ ADD passwords.txt .
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt install -y software-properties-common && \
-    apt-get install hydra-gtk -y
+    apt-get install hydra-gtk -y && \
+    apt install -y software-properties-common
+    
 
 #ENTRYPOINT ["tail"]
 
