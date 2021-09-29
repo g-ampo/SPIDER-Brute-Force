@@ -1,0 +1,28 @@
+version: '3'
+services:
+ ubuntu:
+  image: ubuntu
+  container_name: victim_container
+  restart: always
+  environment:
+   TZ: "Europe/Athens"
+  command: bash -c "ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && apt-get update && apt-get upgrade -y && apt-get install nano && apt install openssh-server sudo -y && useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test && apt-get install iputils-ping httping -y && service ssh start && service ssh status && echo 'test:test' | chpasswd && tail -f dev/null"
+  networks:
+   brute-net:
+    ipv4_address: 10.5.0.2
+
+ kali:
+  image: groot:latest
+  container_name: malicious_container
+  restart: always
+  command: bash -c "apt-get update && apt-get upgrade -y && apt-get install iputils-ping -y && apt-get install -y procps && apt install -y dsniff && apt install -y nmap && apt install -y net-tools && apt-get install -y nano && apt install openssh-server -y && tail -f dev/null"
+  networks:
+   brute-net:
+    ipv4_address: 10.5.0.3
+
+networks:
+ brute-net:
+  driver: bridge
+  ipam:
+   config:
+   - subnet: 10.5.0.0/16
